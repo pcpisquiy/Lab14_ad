@@ -13,12 +13,5 @@ namespace LogicaNegocio.DTO
         public int Edad { get; set; }
         public int Telefono { get; set; }
 
-        public Entidad.Paciente Paciente
-        {
-            get => default;
-            set
-            {
-            }
-        }
     }
 }

@@ -46,7 +46,7 @@ namespace LogicaNegocio.Sesion
                 sqlcnn.Open();
                 if (_Paciente == null) { _Paciente = new Paciente(sqlcnn); }
                 if (_Suceso == null) { _Suceso = new Suceso(sqlcnn); }
-                _Suceso.InsertarSuceso(new SucesoDTO { suceso = "Lista del paciente con el Nombre: " + Nombre.ToString() });
+                _Suceso.InsertarSuceso(new SucesoDTO { suceso = "Lista de los  paciente" });
                 return _Paciente.ListarPacientes(Nombre);
             }
             catch (Exception ex)

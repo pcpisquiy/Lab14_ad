@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Services;
 using LogicaNegocio.DTO;
 using LogicaNegocio.Sesion;
@@ -26,17 +27,17 @@ namespace Lab14_AD
             gestorUsuario.InsertarPaciente(PacienteDto);
         }       
         [WebMethod]
-        public string ListarUsuarios(string Nombre)
+        public List<PacienteDTO> ListarUsuarios(string Nombre)
         {
             GestorClinica gestorUsuario = new GestorClinica(Properties.Settings.Default.StringConnection);
-            return JsonConvert.SerializeObject(gestorUsuario.ListaPacientes(Nombre));
+            return gestorUsuario.ListaPacientes(Nombre);
         }
 
         [WebMethod]
-        public string ListaSucesos()
+        public List<SucesoDTO> ListaSucesos()
         {
             GestorClinica gestorUsuario = new GestorClinica(Properties.Settings.Default.StringConnection);
-            return JsonConvert.SerializeObject(gestorUsuario.ListarSuceso());
+            return gestorUsuario.ListarSuceso();
         }
     }
 }

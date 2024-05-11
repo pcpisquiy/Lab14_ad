@@ -12,12 +12,5 @@ namespace LogicaNegocio.DTO
         public string suceso { get; set; }
         public DateTime Fecha_Suceso { get; set; }
 
-        public Entidad.Suceso Suceso
-        {
-            get => default;
-            set
-            {
-            }
-        }
     }
 }
