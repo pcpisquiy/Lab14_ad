@@ -36,7 +36,7 @@ namespace Lab14_AD
         public string ListaSucesos()
         {
             GestorClinica gestorUsuario = new GestorClinica(Properties.Settings.Default.StringConnection);
-            return JsonConvert.SerializeObject(gestorUsuario.ListarSuceso()));
+            return JsonConvert.SerializeObject(gestorUsuario.ListarSuceso());
         }
     }
 }
