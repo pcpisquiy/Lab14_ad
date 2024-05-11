@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: Documentación de Servicio RESTful de portal médico
+  version: 1.0.0
+paths:
+  /InsertarUsuario:
+    post:
+      summary: Inserta un nuevo usuario al sistema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PacienteDTO'
+      responses:
+        '200':
+          description: Usuario insertado correctamente
+
+  /ListarUsuarios:
+    get:
+      summary: Lista usuarios basados en un nombre
+      parameters:
+        - in: query
+          name: Nombre
+          schema:
+            type: string
+          description: Nombre del usuario a buscar
+      responses:
+        '200':
+          description: Usuarios encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PacienteDTO'
+
+  /ListaSucesos:
+    get:
+      summary: Lista los sucesos
+      responses:
+        '200':
+          description: Sucesos listados correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+components:
+  schemas:
+    PacienteDTO:
+      type: object
+      properties:
+        nombre:
+          type: string
+        apellido:
+          type: string
+        edad:
+          type: integer
