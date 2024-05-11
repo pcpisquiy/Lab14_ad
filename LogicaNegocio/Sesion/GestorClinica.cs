@@ -38,6 +38,29 @@ namespace LogicaNegocio.Sesion
                 }
             }
         }
+
+        public List<PacienteDTO> ListaPacientes(string Nombre)
+        {
+            try
+            {
+                sqlcnn.Open();
+                if (_Paciente == null) { _Paciente = new Paciente(sqlcnn); }
+                if (_Suceso == null) { _Suceso = new Suceso(sqlcnn); }
+                _Suceso.InsertarSuceso(new SucesoDTO { suceso = "Lista del paciente con el Nombre: " + Nombre.ToString() });
+                return _Paciente.ListarPacientes(Nombre);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                if (sqlcnn.State != ConnectionState.Closed)
+                {
+                    sqlcnn.Close();
+                }
+            }
+        }
         public void InsertarPaciente(PacienteDTO pacienteDTO)
         {
             try

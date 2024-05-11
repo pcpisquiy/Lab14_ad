@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Services;
 using LogicaNegocio.DTO;
 using LogicaNegocio.Sesion;
-
+using Newtonsoft.Json; 
 namespace Lab14_AD
 {
     /// <summary>
@@ -22,8 +22,21 @@ namespace Lab14_AD
         [WebMethod]
         public void InsertarUsuario(PacienteDTO PacienteDto)
         {
-            GestorClinica gestorUsuario = new GestorClinica(null);
+            GestorClinica gestorUsuario = new GestorClinica(Properties.Settings.Default.StringConnection);
             gestorUsuario.InsertarPaciente(PacienteDto);
+        }       
+        [WebMethod]
+        public string ListarUsuarios(string Nombre)
+        {
+            GestorClinica gestorUsuario = new GestorClinica(Properties.Settings.Default.StringConnection);
+            return JsonConvert.SerializeObject(gestorUsuario.ListaPacientes(Nombre));
+        }
+
+        [WebMethod]
+        public string ListaSucesos()
+        {
+            GestorClinica gestorUsuario = new GestorClinica(Properties.Settings.Default.StringConnection);
+            return JsonConvert.SerializeObject(gestorUsuario.ListarSuceso()));
         }
     }
 }

@@ -10,17 +10,11 @@ namespace LogicaNegocio.Entidad
     public class Suceso
     {
         private SqlConnection _sqlcnn = null;
+
+        public Suceso() { }
         public Suceso(SqlConnection sqlcnn)
         {
             _sqlcnn = sqlcnn;
-        }
-
-        public Sesion.GestorClinica GestorClinica
-        {
-            get => default;
-            set
-            {
-            }
         }
 
         public void InsertarSuceso(SucesoDTO SucesoDTO)

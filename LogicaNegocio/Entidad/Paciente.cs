@@ -11,14 +11,9 @@ namespace LogicaNegocio.Entidad
     public class Paciente
     {
         private SqlConnection sqlcnn;
-        public Paciente(SqlConnection _sqlcnn) { sqlcnn = _sqlcnn; }
-
-        public Sesion.GestorClinica GestorClinica
-        {
-            get => default;
-            set
-            {
-            }
+        public Paciente() {    }       
+        public Paciente(SqlConnection _sqlcnn) { 
+            sqlcnn = _sqlcnn; 
         }
 
         public List<PacienteDTO> ListarPacientes(int? id) {
@@ -26,6 +21,15 @@ namespace LogicaNegocio.Entidad
             SqlCommand cmd = new SqlCommand(sql, sqlcnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Id", id));
+            return CargarReader(cmd.ExecuteReader());
+        }
+
+        public List<PacienteDTO> ListarPacientes(string Nombre)
+        {
+            string sql = "SP_ListarPaciente";
+            SqlCommand cmd = new SqlCommand(sql, sqlcnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@Nombre", Nombre));
             return CargarReader(cmd.ExecuteReader());
         }
 
